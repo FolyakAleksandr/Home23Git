@@ -111,6 +111,25 @@ final class ViewController: UIViewController {
             sendButton.centerXAnchor.constraint(equalTo: mainView.centerXAnchor),
             sendButton.widthAnchor.constraint(equalToConstant: 200)
         ])
+        sendButton.addTarget(self, action: #selector(clickToSendButton), for: .touchUpInside)
+    }
+    
+    @objc private func clickToSendButton() {
+        let nameperson = nameTextField.text
+        let surnamePerson = surnameTextField.text
+        let agePerson = ageTextField.text
+        
+        if nameperson != "" && surnamePerson != "" && agePerson != "" {
+            let alertController = UIAlertController(title: "Ваши данные:", message: "Имя - \(nameperson ?? "") \nФамилия - \(surnamePerson ?? "")\nВозраст - \(agePerson ?? "")", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Спасибо за воровство :(", style: .default))
+            present(alertController, animated: true)
+        } else {
+            fatalError("Вы ввели не все свои данные 😈")
+        }
+        
+        nameTextField.text = ""
+        surnameTextField.text = ""
+        ageTextField.text = ""
     }
     
     private func styleSendButton() {

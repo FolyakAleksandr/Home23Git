@@ -13,6 +13,8 @@ final class ViewController: UIViewController {
     private let sendButton              = UIButton()
     private let titleLabel              = UILabel()
     private let subtitleLabel           = UILabel()
+    private let changedBackViewButton   = UIButton()
+    private var countClick              = 0
     
     // MARK: - Lyfe cycle
     override func viewDidLoad() {
@@ -25,12 +27,14 @@ final class ViewController: UIViewController {
         configureSendButton()
         configureTitleLabel()
         configureSubtitleLabel()
+        configureChangedBackViewButton()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         styleButton()
         styleSendButton()
+        styleChangedBackViewButton()
     }
     
     // MARK: - API
@@ -170,5 +174,38 @@ final class ViewController: UIViewController {
             subtitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             subtitleLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
         ])
+    }
+    
+    private func configureChangedBackViewButton() {
+        
+        view.addSubview(changedBackViewButton)
+        
+        changedBackViewButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            changedBackViewButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            changedBackViewButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            changedBackViewButton.widthAnchor.constraint(equalToConstant: 200)
+        ])
+        changedBackViewButton.addTarget(self, action: #selector(clickToChangedBackViewButton), for: .touchUpInside)
+    }
+    
+    @objc private func clickToChangedBackViewButton() {
+        countClick += 1
+        
+        switch countClick {
+        case 1:
+            view.backgroundColor = .brown
+        case 2:
+            view.backgroundColor = .white
+            countClick = 0
+        default: break
+        }
+    }
+    
+    private func styleChangedBackViewButton() {
+        changedBackViewButton.setTitle("Изменить фон", for: .normal)
+        changedBackViewButton.setTitleColor(.white, for: .normal)
+        changedBackViewButton.backgroundColor = .systemRed
+        changedBackViewButton.layer.cornerRadius = changedBackViewButton.frame.height / 2
     }
 }

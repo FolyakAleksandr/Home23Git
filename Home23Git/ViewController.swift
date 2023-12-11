@@ -11,6 +11,7 @@ final class ViewController: UIViewController {
     private let surnameTextField        = UITextField()
     private let ageTextField            = UITextField()
     private let sendButton              = UIButton()
+    private let titleLabel              = UILabel()
     
     // MARK: - Lyfe cycle
     override func viewDidLoad() {
@@ -21,6 +22,7 @@ final class ViewController: UIViewController {
         configureStackView()
         configureTextFields()
         configureSendButton()
+        configureTitleLabel()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -137,5 +139,18 @@ final class ViewController: UIViewController {
         sendButton.setTitleColor(.white, for: .normal)
         sendButton.backgroundColor = .systemBlue
         sendButton.layer.cornerRadius = showAlertWithButton.frame.height / 2
+    }
+    
+    private func configureTitleLabel() {
+        view.addSubview(titleLabel)
+        titleLabel.text = "Это какая-то форма!"
+        titleLabel.font = .boldSystemFont(ofSize: 27)
+        titleLabel.textColor = .systemGray3
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: showAlertWithButton.bottomAnchor, constant: 20),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
 }

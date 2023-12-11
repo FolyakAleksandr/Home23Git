@@ -12,6 +12,7 @@ final class ViewController: UIViewController {
     private let ageTextField            = UITextField()
     private let sendButton              = UIButton()
     private let titleLabel              = UILabel()
+    private let subtitleLabel           = UILabel()
     
     // MARK: - Lyfe cycle
     override func viewDidLoad() {
@@ -23,6 +24,7 @@ final class ViewController: UIViewController {
         configureTextFields()
         configureSendButton()
         configureTitleLabel()
+        configureSubtitleLabel()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -151,6 +153,22 @@ final class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: showAlertWithButton.bottomAnchor, constant: 20),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    private func configureSubtitleLabel() {
+        view.addSubview(subtitleLabel)
+        subtitleLabel.text = "Это какой-то подзаголовок, в котором находится бесполезный текст :D"
+        subtitleLabel.font = .systemFont(ofSize: 16, weight: .light)
+        subtitleLabel.textColor = .systemGray4
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.numberOfLines = 0
+        
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            subtitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            subtitleLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
         ])
     }
 }

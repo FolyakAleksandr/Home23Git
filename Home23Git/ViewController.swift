@@ -47,7 +47,7 @@ final class ViewController: UIViewController {
     }
     
     @objc private func clickToButton() {
-        let alertController = UIAlertController(title: "Приветствую!", message: "Вам необходимо заполнить данные ниже 👇", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Приветствую!!", message: "Вам необходимо заполнить данные ниже 👇", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         present(alertController, animated: true)
     }

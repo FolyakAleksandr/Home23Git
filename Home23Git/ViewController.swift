@@ -13,6 +13,7 @@ final class ViewController: UIViewController {
     private let sendButton              = UIButton()
     private let titleLabel              = UILabel()
     private let subtitleLabel           = UILabel()
+    private let newLabel                = UILabel()  // <-- для примера в Fork
     
     // MARK: - Lyfe cycle
     override func viewDidLoad() {
